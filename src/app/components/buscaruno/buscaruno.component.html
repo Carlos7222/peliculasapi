@@ -1,0 +1,39 @@
+<div class="container mt-3">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+    <div *ngIf="pelicula.poster_path!=null" class="col ">
+      <img class="img-fluid img-thumbnail" [src]="pelicula.poster_path|img" alt="...">
+    </div>
+    <div class="col">
+      <div class="text-center">
+        <h2>{{pelicula.original_title}}</h2>
+        <p class="justify">{{pelicula.overview}}</p>
+      </div>
+    </div>
+    <div class="col" style="text-align: center;">
+      <h3 class="text-center"><i class="far fa-thumbs-up"></i> <small>{{pelicula.vote_average}}</small> </h3>
+      <h3 class="text-center"> <i class="fas fa-vote-yea"></i> <small>{{pelicula.vote_count}}</small></h3>
+      <h4>productoras</h4>
+      <div *ngFor="let item of pelicula.production_companies" style="border: 1px solid ;">
+        <img style="margin-top: 10px; margin-bottom: 10px;" [src]="item.logo_path|img" alt="" width="50px"
+          height="50px">
+        <h5>{{item.name}}</h5>
+      </div>
+    </div>
+  </div>
+  <div style="text-align: center; margin-top: 20px;">
+    <h3>Trailer</h3>
+    <iframe width="100%" height="350px" [src]="trailer|urlyoutube" title="YouTube video player" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+    <h3 style="text-align: center;">Actores</h3>
+  <div style="width: 100%; margin-bottom: 20px;  ">
+    <div class="horizontal-scroll-contenedor">
+      <div class="contenedor-actor" *ngFor="let item of actores">
+          <img [src]="item.profile_path|img" alt="" width="100px">
+          <p style="margin-top: 10px;">{{item.name}}</p>
+      </div>
+    </div>
+  </div>
+
+</div>

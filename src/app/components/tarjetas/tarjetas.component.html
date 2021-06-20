@@ -1,0 +1,86 @@
+<div style="margin-top: 20px; display: flex;" >
+    <div *ngIf="!buscarpelicula">
+        <h4 style="margin-right: 20px;  padding: 0px 0px;">Genero:</h4>
+        <form [formGroup]="formulariobusqueda" style="margin-bottom: 20px;" >
+            <select (click)="valorfiltrofuncion()" formControlName="filtro"   style="width: 80%;" class="form-select" aria-label="Default select example">
+                <option value="nada" selected>sin filtro</option>
+                <option   *ngFor="let item of generos"  [value]="item.id">{{item.name}}</option>
+            </select>
+        </form>
+    </div>
+
+
+ <hr>
+</div>
+<div class="album bg-light">
+    <div class="container">
+        <h1 *ngIf="mostrartitulopopulars &&  !buscarpelicula" class=" text-center mb-3">Populares</h1>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 ">
+            <div class="col  " *ngFor="let pelicula of peliculas">
+                <div class="card hover mb-3"(click)="redireccionar(pelicula)" style="width: 18rem;">
+                    <img [src]="pelicula.backdrop_path|img" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{pelicula.original_title}}</h5>
+                        <p class="card-text">{{pelicula.overview|slice:0:100 }}......</p>
+                    </div>
+                    <div class="card-footer">
+                        <i class="far fa-thumbs-up"></i> <small  >{{pelicula.vote_average}}</small> - <i class="fas fa-vote-yea"></i> <small  >{{pelicula.vote_count}}</small>
+                      </div>
+                </div>
+
+            </div>
+        </div>
+       
+   
+    </div>
+    <div *ngIf="mostrarmas ||  buscarpelicula && peliculas.length>0" style="text-align: center; margin-bottom: 20px;" >
+        <button class="btn btn-dark" (click)="cargarotraspelis()" >mostrar mas</button>
+    </div>
+</div>
+
+<div *ngIf="mostrarcartelera &&  !buscarpelicula" class="album py-5 bg-light">
+    <hr>
+    <div class="container">
+        <h1 class=" text-center mb-3">En cartelera</h1>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col" *ngFor="let pelicula of cartelera">
+                <div class="card hover mb-3"(click)="redireccionar(pelicula)" style="width: 18rem;">
+                    <img [src]="pelicula.backdrop_path|img" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{pelicula.original_title}}</h5>
+                        <p class="card-text">{{pelicula.overview|slice:0:100 }}......</p>
+                    </div>
+                    <div class="card-footer">
+                        <i class="far fa-thumbs-up"></i> <small  >{{pelicula.vote_average}}</small> - <i class="fas fa-vote-yea"></i> <small  >{{pelicula.vote_count}}</small>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="mostrarmejores &&  !buscarpelicula" class="album py-5 bg-light">
+    <hr>
+    <div class="container">
+        <h1 class=" text-center mb-3">Las mejores</h1>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col" *ngFor="let pelicula of cartelera">
+                <div class="card hover mb-3"(click)="redireccionar(pelicula)" style="width: 18rem;">
+                    <img [src]="pelicula.backdrop_path|img" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{pelicula.original_title}}</h5>
+                        <p class="card-text">{{pelicula.overview|slice:0:100 }}......</p>
+                    </div>
+                    <div class="card-footer">
+                        <i class="far fa-thumbs-up"></i> <small  >{{pelicula.vote_average}}</small> - <i class="fas fa-vote-yea"></i> <small  >{{pelicula.vote_count}}</small>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="existepelicula"  style="text-align: center;">
+            <h3>No se encontro la pelicula: {{busquedaquery}}</h3>
+</div>

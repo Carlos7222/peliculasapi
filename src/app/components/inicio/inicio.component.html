@@ -1,0 +1,16 @@
+<div class="row py-lg-5 bg-image" style="background-image: url('https://c4.wallpaperflare.com/wallpaper/621/859/641/peliculas-terror-wallpaper-preview.jpg');
+            " background-attachment: fixed>
+    <div class="col-lg-6 col-md-8 mt-5 mx-auto justify-content-center  fondotexto  text-center">
+        <h1 class="text-white ">Todas las pelis</h1>
+        <p class="lead text-white">Aqui podras toda la informacion necesaria acerca de una pelicula en particular</p>
+        <p>
+            <a routerLink="/buscar" class="btn btn-dark my-2 align-items-center">Buscar pelicula</a>
+
+        </p>
+    </div>
+</div>
+<div class="container">
+    <app-tarjetas [peliculas]="peliculas" [cartelera]="cartelera" [mejores]="mejores" ></app-tarjetas>
+</div>
+
+ 
